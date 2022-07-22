@@ -1,5 +1,5 @@
 <template>
-  <v-row class="ma-8">
+  <v-row class="ma-8 pt-0">
     <v-col
       v-for="n in 9"
       :key="n"
