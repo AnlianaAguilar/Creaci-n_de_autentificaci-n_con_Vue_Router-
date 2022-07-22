@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row justify="center"  class="mt-10">
-      <v-col md="6" >
+    <v-row justify="center" class="mt-10">
+      <v-col md="6">
         <v-img :src="require('../assets/register.png')" class="mx-3" contain />
       </v-col>
       <v-col>
@@ -26,22 +26,20 @@
             :disabled="!valid"
             color="teal accent-3"
             class="mr-4"
-            @click="login"
+            @click="register"
           >
-            Login
+            Registrar
           </v-btn>
 
           <v-btn color="error" class="mr-4" @click="reset"> Borrar</v-btn>
         </v-form>
-        <v-btn class="mt-4" text color="primary" @click="redirectTo">Registrarse</v-btn>
-        <!-- <router-link to='/register'>Registrarse</router-link> -->
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 export default {
   name: "component-name",
   // props: {},
@@ -68,26 +66,24 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    login() {
+    register() {
       this.validate();
-      if(this.valid==false) return
+      if (this.valid == false) return;
       const auth = getAuth();
-      signInWithEmailAndPassword(auth, this.email, this.password)
+      createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user)
-          this.$router.push('/')
+          console.log(user);
+          this.$router.push("/login");
           // ...
         })
         .catch((error) => {
-        //   const errorCode = error.code;
+          // const errorCode = error.code;
           const errorMessage = error.message;
-          alert(errorMessage)
+          alert(errorMessage);
+          // ..
         });
-    },
-    redirectTo(){
-        this.$router.push('/register')
     },
   },
   // watch: {},
