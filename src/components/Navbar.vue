@@ -1,13 +1,13 @@
 <template>
   <v-app-bar app color="primary" dark>
     <div class="d-flex align-center">
-      <h1>Autenticación</h1>
+      <h2>Autenticación</h2>
     </div>
 
     <v-spacer></v-spacer>
 
     <v-btn @click="logout"
-    color="grey">
+    color="blue accent-3">
     <span class="mr-2">Logout</span>
       <v-icon>mdi-logout</v-icon>
       </v-btn>
